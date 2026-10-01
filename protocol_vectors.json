@@ -1,0 +1,71 @@
+{
+  "protocol_version": "flora-rs485-v1",
+  "crc_check_ascii_123456789": "29b1",
+  "vectors": [
+    {
+      "name": "poll_node_2",
+      "addr": 2,
+      "cmd": 1,
+      "sequence": 1,
+      "payload_hex": "",
+      "frame_hex": "aa0201000100100a55"
+    },
+    {
+      "name": "set_valve_open_300_seconds",
+      "addr": 2,
+      "cmd": 2,
+      "sequence": 2,
+      "payload_hex": "01012c",
+      "frame_hex": "aa020200020301012ce0cb55"
+    },
+    {
+      "name": "set_threshold_200_700_per_mille",
+      "addr": 3,
+      "cmd": 3,
+      "sequence": 258,
+      "payload_hex": "00c802bc",
+      "frame_hex": "aa030301020400c802bcc80755"
+    },
+    {
+      "name": "info_response",
+      "addr": 2,
+      "cmd": 131,
+      "sequence": 3,
+      "payload_hex": "a1b2c3d4e5f60708020102",
+      "frame_hex": "aa028300030ba1b2c3d4e5f6070802010236c055"
+    },
+    {
+      "name": "sensor_data_response",
+      "addr": 2,
+      "cmd": 130,
+      "sequence": 4,
+      "payload_hex": "a1b2c3d4e5f6070801020138011c02c6000f500000041200000e10",
+      "frame_hex": "aa028200041ba1b2c3d4e5f6070801020138011c02c6000f500000041200000e105ca655"
+    },
+    {
+      "name": "broadcast_ping",
+      "addr": 0,
+      "cmd": 5,
+      "sequence": 5,
+      "payload_hex": "",
+      "frame_hex": "aa000500050052bc55"
+    },
+    {
+      "name": "maximum_payload_and_sequence_wrap_boundary",
+      "addr": 2,
+      "cmd": 127,
+      "sequence": 65535,
+      "payload_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "frame_hex": "aa027fffff40000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3fada955"
+    }
+  ],
+  "invalid_vectors": [
+    {"name": "too_short", "frame_hex": "aa02", "error": "TooShort"},
+    {"name": "bad_start", "frame_hex": "ab0201000100100a55", "error": "InvalidStart"},
+    {"name": "reserved_address", "frame_hex": "aaff01000100000055", "error": "InvalidAddress"},
+    {"name": "payload_over_limit", "frame_hex": "aa0201000141000055", "error": "PayloadTooLong"},
+    {"name": "non_exact_length", "frame_hex": "aa020100010000000055", "error": "LengthMismatch"},
+    {"name": "bad_end", "frame_hex": "aa0201000100100a54", "error": "InvalidEnd"},
+    {"name": "bad_crc", "frame_hex": "aa0201000100100b55", "error": "Checksum"}
+  ]
+}
